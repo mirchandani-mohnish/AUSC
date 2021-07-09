@@ -1,0 +1,29 @@
+The idea behind this problem statement is to help students keep a track of
+their academic progress. The competitors will have to create a website that
+fulfills the following requirements:
+● TODOs:
+○ Every user can create their list of to-dos to keep track of their tasks
+○ Users should be able to add a reminder for each of the tasks
+
+● Admin Panel:
+○ Admin can add and design courses
+○ Admin can enroll students for those courses
+
+● A page for keeping track of completed courses
+○ Display the required credits in each of the course categories like GERs,
+core courses, major electives etc
+○ Users should be able to add a completed course in each of this
+category and the credits requirements should be updated accordingly
+
+● Ratings for courses
+○ Users should be able to rate courses on the basis of various features
+○ Users should be able to filter out courses based on category, faculties,
+credits etc
+
+● Resume maker [brownie]
+○ A page that creates a resume ( which follows a ATS approved template
+) based on the inputs of the user
+
+
+-> chat client using matrix -- could be helpful
+-> resource server -- drive links to certain resources
