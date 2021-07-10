@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/bootstrap.min.css">
+    <link rel="stylesheet" href="./signup.css">
+    <title>Register</title>
+</head>
+<body>
+    <div id = "mainregister" class="position-absolute top-50 start-50 translate-middle">
+        <form action="/register" method="POST">  
+            <div class="row">
+                <div id="uname" class="col mb-3">
+                <input id="usernameinput" name="uname" type="text" class="form-control" placeholder="Username">
+                </div>
+                <div id="uemail" class="col mb-3">
+                    <input type="email" name="email" class="form-control" placeholder="Email">
+
+                </div>
+                <div id="upasswd" class="mb-3">
+                    <input type="password" name="password" class="form-control" placeholder="Password">
+                </div> 
+                <button type="submit" class="btn btn-danger">Submit</button>
+                <div id ="emailHelp" class="form-text">Already Registered?<a href="./login"> Login instead.</a></div>
+            </div>
+        </form>
+
+    </div>
+
+    
+        
+
+
+    
+</body>
+</html>

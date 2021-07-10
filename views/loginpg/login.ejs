@@ -11,7 +11,7 @@
 </head>
 <body>
     <div id="mainlogin" class="position-absolute top-50 start-50 translate-middle">
-        <form action="/login" method="post">
+        <form action="/login" method="POST">
         <div class="mb-3">
             <label for="exampleInputEmail1" class="form-label">Email address</label>
             <input type="email" name="email" class="form-control" id="loginemail" aria-describedby="emailHelp">
@@ -23,6 +23,9 @@
         </div>
         
         <button type="submit" class="btn btn-danger">Submit</button>
+        <div id ="emailHelp" class="form-text">Not a registered user <a href="./register">register</a></div>
+            
+        </div>
         </form>
         
     
