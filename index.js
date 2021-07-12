@@ -6,7 +6,9 @@ var bodyParser = require('body-parser');
 var user = require('./models/user');
 var ejs = require('ejs');
 var connect = require('connect');
-var passport = require('passport');
+
+var bcrypt = require('bcryptjs');
+//const { use } = require('passport');
 
 // use bodyparser 
 app.use(bodyParser.urlencoded());
@@ -20,6 +22,17 @@ app.use(bodyParser.urlencoded({
 
 
 app.set('view engine','ejs');
+// mongoose connection
+mongoose.connect('mongodb://localhost:27017/register',{useNewUrlParser: true , useUnifiedTopology: true , useCreateIndex:true });
+const db = mongoose.connection;
+db.on("error", console.error.bind(console, "connection error:"));
+
+db.once("open", function() {
+  console.log("Connection Successful!");
+});
+
+// user schema made in models folder 
+var usermodel = mongoose.model("model",user,"users");
 
 // import statements for bootstrapp ============================================
 app.use(
@@ -48,7 +61,22 @@ app.get('/login',function(req,res){
 });
 
 app.post('/login',function(req,res){
+    const {username , password} = req.body;
 
+    const tempuser = usermodel.findOne({username}).lean();
+
+    if(!tempuser){
+        return res.json({status:'error'});
+    }else{
+        
+        if(bcrypt.compare(password,user.password)){
+            
+            res.redirect('/');
+
+        }else{
+            return res.json({status: 'error'});
+        }
+    }
 })
 
 // site login page ends ========================================================
@@ -59,35 +87,37 @@ app.get('/register', function(req,res){
     res.render('loginpg/signup');
 });
 
-// mongoose connection
-mongoose.connect('mongodb://localhost:27017/register',{useNewUrlParser: true , useUnifiedTopology: true });
-const db = mongoose.connection;
-db.on("error", console.error.bind(console, "connection error:"));
 
-db.once("open", function() {
-  console.log("Connection Successful!");
-});
-// user schema made in models folder 
-var usermodel = mongoose.model("model",user,"registrations");
+
 // post function for register page 
 app.post('/register',function(req,res){
     
    var tempuser = new usermodel({
     emailId: req.body.email,
-    password: req.body.password,
+    password: (bcrypt.hash(req.body.password,5)),
     userName: req.body.uname
    });
+   try{
+    usermodel.create(tempuser);
+    console.log("created succesfully",res);
+   }
+   catch(error){
+        console.log(error);
+   }
 
+   /*
    tempuser.save(function(err,res){
         if(err){
             console.log("document invalid");
         }else{
             console.log("valid");
         }
-   });
+   });*/
+
+   
     
 
-    
+    res.redirect('/login');
     
 })
 // register ends ==================================================

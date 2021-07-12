@@ -6,9 +6,9 @@ const Schema = mongoose.Schema;
 
 
 var user = new Schema({
-    emailId: { type:String},
-    password: { type:String},
-    userName: { type:String}
+    emailId: { type:String , required:true},
+    password: { type:String, required:true},
+    userName: { type:String,required:true,unique:true}
 
 
 })
