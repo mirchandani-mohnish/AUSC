@@ -1,4 +1,3 @@
-
 const mongoose = require('mongoose');
 
 
@@ -11,4 +10,8 @@ var user = new Schema({
     userName: { type:String,required:true,unique:true}
 
 
-})
+});
+
+
+module.exports = mongoose.model("usermodel",user,"users");
+
