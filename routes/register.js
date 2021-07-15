@@ -33,22 +33,29 @@ router.get('/', function(req,res){
 
 
 // post function for register page 
-router.post('/',function(req,res){
-    
+router.post('/',async function(req,res){
+  try{
+    const salt = await bcrypt.genSalt();
+    var hashedPassword = await bcrypt.hash(req.body.password,salt);
+    console.log(hashedPassword);
+  }catch(error){
+    res.status(203).send();
+  }
   
 
    var tempuser = new usermodel({
     emailId: req.body.email,
-    password: req.body.password,
+    password: hashedPassword,
     userName: req.body.uname
    });
+
    try{
     usermodel.create(tempuser);
     console.log("tempuser created succesfully");
-    res.redirect('/');
+    res.redirect('/login');
    }
    catch(error){
-        console.log(error);
+        console.log("some error occured");
    }
 });
 
