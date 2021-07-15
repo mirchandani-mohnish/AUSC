@@ -56,7 +56,7 @@ router.post('/',async function(req,res){
         console.log(tempuser);
         if(tempuser.password === password){
             console.log("logged  in successfully");
-            Uname = tempuser.userName;
+            
             
             res.redirect('/');
             

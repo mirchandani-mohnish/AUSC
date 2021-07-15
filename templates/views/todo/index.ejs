@@ -1,0 +1,45 @@
+<%- include("../../partials/header")  %>
+<nav class="navbar navbar-light bg-light">
+    <a class="navbar-brand" href="/">TO-DO LIST AUSC</a>
+</nav>
+<style>
+    .navbar a{
+        width: 100%;
+        text-align: center;
+        font-size: xx-large;
+    }
+    
+</style>
+<style>
+
+*{
+        font-family: cursive;
+    }
+</style>
+
+<div class="container mt-5">
+    <form action="/todo/add/todo" method="POST" class="d-flex">
+        <input type="text" name="todo" class="form-control" placeholder="Enter Your To-Do">
+        <input type="submit" value="Add Todo" class="btn btn-md btn-primary mx-2">
+    </form>
+
+    <ul class="list-group my-5">
+        <% todo.forEach(todos => { %>
+        <li class="list-group-item"><%= todos.todo %><a href="/todo/delete/todo/<%= todos._id %>"class="btn btn-danger btn-sm">Delete</a></li>   
+        <% }) %>
+
+    </ul>
+    <style>
+        body{background-color: powderblue;}
+        .list-group-item a{
+            position: relative;
+            margin-left: 1000px;
+        }
+    </style>
+</div>
+
+
+
+
+
+<%- include("../../partials/footer")  %>

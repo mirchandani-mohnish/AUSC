@@ -7,7 +7,7 @@ const path = require('path');
 var register = require('./routes/register');
 var login = require('./routes/loginpg');
 //var courseComp = require('./routes/courseComp');
-
+var todo = require('./routes/todo');
 
 //variables
 var Uname = "Login"; 
@@ -31,6 +31,10 @@ app.use(
 );
 // bootstrap ends ===============================================================
 
+app.use(express.json());
+app.use(express.urlencoded({
+    extended: true
+}));
 
 // site main home page -----
 app.get('/',function(req,res){
@@ -40,8 +44,8 @@ app.get('/',function(req,res){
 // routes -- used
 app.use('/login',login); // login page
 app.use('/register',register);// register
-//app.use('/courseComp',courseComp);
-
+//app.use('/courseCom',courseComp);
+app.use('/todo',todo);
 
 
 
