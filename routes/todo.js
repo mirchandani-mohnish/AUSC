@@ -20,7 +20,6 @@ router.get("/", async(req, res) => {
 })
 
 
-
 router
   .post("/add/todo", (req, res) => {
     const { todo } = req.body;

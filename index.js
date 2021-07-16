@@ -37,8 +37,11 @@ app.use(express.urlencoded({
 }));
 
 // site main home page -----
-app.get('/',function(req,res){
-    res.render('home/homemain',{Uname:Uname});
+var todomodel = require('./models/Todo');
+app.get('/',async function(req,res){
+    var mytodos = await todomodel.find({});
+
+    res.render('home/homemain',{Uname:Uname, todos: mytodos});
 });
 
 // routes -- used
