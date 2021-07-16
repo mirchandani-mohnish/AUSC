@@ -37,7 +37,7 @@
                     <a class="nav-link active" aria-current="page" href="/">Home</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">ToDo</a>
+                    <a class="nav-link active" aria-current="page" href="/todo">ToDo</a>
                   </li>
                   <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="#">Course Companion</a>
@@ -61,10 +61,10 @@
     <div class="col">
 
         <div id="todopanel" class="container shadow-lg border rounded h-100 mt-4">
-          <div id="todohead" class="h3">To Do Today</div>
-          <ul class="list-group my-5">
+          <div id="todohead" class="h3 mt-2">To Do Today</div>
+          <ul class="list-group">
             <% todos.forEach(mytodos => { %>
-            <li class="list-group-item text-danger h2"><%= mytodos.todos %></li>   
+            <li class="h4 list-group-item"><%= mytodos.todo %></li>   
             <% }); %>
     
           </ul>
@@ -79,7 +79,7 @@
     </div>
     <div class="col">
       <div id="schedulepanel" class="container shadow-lg border rounded h-100 mt-4">
-        <div id="scheduletoday" class="h3">Schedule Today</div>
+        <div id="scheduletoday" class="h3 mt-2">Schedule Today</div>
       </div>
     </div>
 
