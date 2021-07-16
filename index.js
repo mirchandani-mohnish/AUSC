@@ -41,7 +41,7 @@ var todomodel = require('./models/Todo');
 app.get('/',async function(req,res){
     var mytodos = await todomodel.find({});
 
-    res.render('home/homemain',{Uname:Uname, todos: mytodos});
+    res.render('home/homemain',{Uname:Uname, todos: mytodos}); // send todos for the mini todo panel in 
 });
 
 // routes -- used
