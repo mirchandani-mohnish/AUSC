@@ -6,9 +6,9 @@ const path = require('path');
 // routes
 var register = require('./routes/register');
 var login = require('./routes/loginpg');
-//var courseComp = require('./routes/courseComp');
+var courseComp = require('./routes/courseComp');
 var todo = require('./routes/todo');
-
+var admin = require('./routes/adminpg');
 //variables
 var Uname = "Login"; 
 
@@ -47,8 +47,9 @@ app.get('/',async function(req,res){
 // routes -- used
 app.use('/login',login); // login page
 app.use('/register',register);// register
-//app.use('/courseCom',courseComp);
-app.use('/todo',todo);
+app.use('/courseComp',courseComp);// course companion
+app.use('/todo',todo);// todo list 
+app.use('/admin',admin);// admin companion
 
 
 

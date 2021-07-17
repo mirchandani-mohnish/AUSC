@@ -27,7 +27,7 @@
 
     <ul class="list-group my-5">
         <% todo.forEach(todos => { %>
-        <li class="list-group-item"><%= todos.todo %><a href="/todo/delete/todo/<%= todos._id %>"class="btn btn-danger btn-sm">Delete</a></li>   
+            <li class="list-group-item"><%= todos.todo %><a href="/todo/delete/todo/<%= todos._id %>"class="btn btn-danger btn-sm">Delete</a></li>   
         <% }) %>
 
     </ul>
