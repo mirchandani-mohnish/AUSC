@@ -8,7 +8,7 @@
     <title>AUSC Course Companion</title>
 </head>
 <body>
-    <%-include('../navbar.ejs')%>
+    <%-include('../../partials/navbar.ejs')%>
     <div id="coursenavbar">
         <nav class="navbar navbar-expand-lg navbar-light bg-red-600">
             <div class="container-fluid">
@@ -27,24 +27,30 @@
           </nav>
 
     </div>
-    <div class="row">
-        <div class="card rounded-top m-2 col" style="width: 18rem;">
-            <img src="..." class="card-img-top" alt="...">
-            <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-              <a href="#" class="btn btn-primary">Know More</a>
-              <div class="container">
-                <span id="rateMe2"  class="empty-stars"></span>
-              </div>
-              <script src="./js/addons/rating.js"></script>
-            </div>
-        </div>
-        
-        
-
-    </div>
     
+    <div class="container-fluid">
+      <div class="row">
+        <% allcourses.forEach(course => {%>   
+          <div class="card rounded-top m-2 col-3" style="width: 18rem;">
+              
+              <div class="card-body">
+                <h5 class="card-title"><%=course.title%></h5>
+                <h5 class="card-text"><%=course.code%></h5>
+                <h5 class="card-text"><%=course.faculty%></h5>
+                
+                <p class="card-text"><%=course.content%></p>
+                <a href="#" class="btn btn-primary">View</a>
+                
+                
+              </div>
+
+          </div>
+          <%});%>
+          
+          
+
+      </div>
+    </div>  
 
 
 
