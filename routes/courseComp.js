@@ -20,7 +20,10 @@ router.get('/',async function(req,res){
     var allcourses = await course.find({});// allcourses will be passed via get to website 
     res.render('courseComp/courseCom',{allcourses:allcourses});// function to display all courses 
 });
-
+router.post('/',async function(req,res){
+  var allcourses = await course.find({title: req.body.searchval});// allcourses will be passed via get to website 
+  res.render('courseComp/courseCom',{allcourses:allcourses});// function to display all courses 
+});
 
 
 
