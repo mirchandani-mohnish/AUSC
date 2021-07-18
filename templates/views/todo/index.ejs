@@ -1,5 +1,5 @@
 <%- include("../../partials/header")  %>
-<nav class="navbar navbar-light bg-light">
+<!--<nav class="navbar navbar-light bg-light">
     <a class="navbar-brand" href="/">TO-DO LIST AUSC</a>
 </nav>
 <style>
@@ -11,11 +11,13 @@
     
 </style>
 <style>
-
 *{
         font-family: cursive;
     }
 </style>
+-->
+<%-include("../../partials/navbar")%>
+
 
 <div class="container mt-5">
     <form action="/todo/add/todo" method="POST" class="d-flex">
@@ -25,7 +27,7 @@
 
     <ul class="list-group my-5">
         <% todo.forEach(todos => { %>
-        <li class="list-group-item"><%= todos.todo %><a href="/todo/delete/todo/<%= todos._id %>"class="btn btn-danger btn-sm">Delete</a></li>   
+            <li class="list-group-item"><%= todos.todo %><a href="/todo/delete/todo/<%= todos._id %>"class="btn btn-danger btn-sm">Delete</a></li>   
         <% }) %>
 
     </ul>

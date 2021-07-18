@@ -8,6 +8,84 @@
     <title>Admin</title>
 </head>
 <body>
+    <%-include('../../partials/navbar.ejs')%>
+    <div id="coursenavbar">
+        <nav class="navbar navbar-expand-lg navbar-light bg-red-600">
+            <div class="container-fluid">
+              <a class="navbar-brand" href="#">Filters</a>
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                
+                <form class="d-flex">
+                  <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                  <button class="btn btn-outline-success" type="submit">Search</button>
+                </form>
+              </div>
+            </div>
+        </nav>
+    </div>
+
+    <div>
+      <div class="container" id="formcontainer">  
+        <div class="position-relative end-0 top-0 shadow-lg border rounded m-4" id="courseform" >
+          
+            <form class="row g-3 m-4" action="/admin/add" method="POST">
+              <div class="h3">Add a new Course</div>
+                <div class="col-md-6">
+                  <label for="inputcoursename" class="form-label">Name</label>
+                  <input name="name" type="text" class="form-control" id="inputcoursename">
+                </div>
+                <div class="col-md-6">
+                  <label for="inputcode" class="form-label">Code</label>
+                  <input name="code" type="text" class="form-control" id="inputcode">
+                </div>
+                <div class="col-12">
+                  <label for="inputcontent" class="form-label">Some Details about the course</label>
+                  <input name="content" type="text" class="form-control" id="inputcontent" >
+                </div>
+                <div class="col-12">
+                  <label for="faculty" class="form-label">Faculty</label>
+                  <input name="faculty" type="text" class="form-control" id="faculty" >
+                </div>
+                
+                
+                <div class="col-12">
+                  <button type="submit" class="btn btn-danger">Submit</button>
+                </div>
+            </form>
+        </div>
+      </div>
+
+      <div class="container-fluid">
+        <div class="row">
+          
+        
+        <% allcourses.forEach(course => { %>   
+        <div class="col-3 card rounded-top m-2" style="width: 18rem;">
+            <!--<img src="..." class="card-img-top" alt="...">-->
+            <div class="card-body">
+                <h5 class="card-title"><%=course.title%></h5>
+                <h5 class="card-text"><%=course.code%></h5>
+                <h5 class="card-text"><%=course.faculty%></h5>
+                
+                <p class="card-text"><%=course.content%></p>
+                <a href="#" class="btn btn-primary">View</a>
+                
+                
+            </div>
+
+        </div>
+        <% }); %>
+        </div>
+      </div>
+
+      
+      
+    </div>
+        
+    
     
 </body>
 </html>

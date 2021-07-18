@@ -6,9 +6,9 @@ const path = require('path');
 // routes
 var register = require('./routes/register');
 var login = require('./routes/loginpg');
-//var courseComp = require('./routes/courseComp');
+var courseComp = require('./routes/courseComp');
 var todo = require('./routes/todo');
-
+var admin = require('./routes/adminpg');
 //variables
 var Uname = "Login"; 
 
@@ -37,15 +37,19 @@ app.use(express.urlencoded({
 }));
 
 // site main home page -----
-app.get('/',function(req,res){
-    res.render('home/homemain',{Uname:Uname});
+var todomodel = require('./models/Todo');
+app.get('/',async function(req,res){
+    var mytodos = await todomodel.find({});
+
+    res.render('home/homemain',{Uname:Uname, todos: mytodos}); // send todos for the mini todo panel in 
 });
 
 // routes -- used
 app.use('/login',login); // login page
 app.use('/register',register);// register
-//app.use('/courseCom',courseComp);
-app.use('/todo',todo);
+app.use('/courseComp',courseComp);// course companion
+app.use('/todo',todo);// todo list 
+app.use('/admin',admin);// admin companion
 
 
 

@@ -22,7 +22,7 @@
 
     </div>
     -->
-
+  <div id="mainbody" class="row">
     <div id="navbarmain">
         <nav class="navbar navbar-expand-lg navbar-dark bg-danger ">
             <div class="container-fluid">
@@ -37,13 +37,10 @@
                     <a class="nav-link active" aria-current="page" href="/">Home</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">ToDo</a>
+                    <a class="nav-link active" aria-current="page" href="/todo">ToDo</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Course Companion</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Resume</a>
+                    <a class="nav-link active" aria-current="page" href="/courseComp">Course Companion</a>
                   </li>
                   
                   
@@ -56,13 +53,31 @@
             </div>
           </nav>
     </div>
+  </div>
+  <div id="homebody" class="row">
+    <div class="col">
 
-    <div id="homebody">
-        
+        <div id="todopanel" class="container shadow-lg border rounded h-100 mt-4">
+          <div id="todohead" class="h3 mt-2">To Do Today</div>
+          <ul class="list-group">
+            <% todos.forEach(mytodos => { %>
+            <li class="h4 list-group-item"><%= mytodos.todo %></li>   
+            <% }); %>
+    
+          </ul>
+
+          
+
+        </div>
 
 
 
 
+    </div>
+    <div class="col">
+      <div id="schedulepanel" class="container shadow-lg border rounded h-100 mt-4">
+        <div id="scheduletoday" class="h3 mt-2">Schedule Today</div>
+      </div>
     </div>
 
 

@@ -1,5 +1,6 @@
 var express = require('express');
 let router = express.Router();
+var bcrypt = require('bcryptjs');
 
 var ejs = require('ejs');
 
@@ -39,8 +40,7 @@ router.post('/',async function(req,res){
     const email = req.body.email;
     const password = req.body.password;
 
-    console.log(email);
-    console.log(password);
+   
 
     const tempuser = await usermodel.findOne({emailId:email}); 
 
@@ -53,17 +53,18 @@ router.post('/',async function(req,res){
 
     }else{
         
-        console.log(tempuser);
-        if(tempuser.password === password){
-            console.log("logged  in successfully");
-            
-            
-            res.redirect('/');
-            
-        }else{
-            console.log("sorry try again");
-            res.send("invalid password");
+        try{
+            if(await bcrypt.compare(req.body.password,tempuser.password)){
+                console.log("logged in");
+                res.redirect('/');
+            }else{
+                console.log("failed");
+                res.status(203).send();
+            }
+        }catch(error){
+            console.log("sorry some error");
         }
+            
 
     }
 })
