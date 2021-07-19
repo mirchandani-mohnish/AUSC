@@ -43,9 +43,36 @@ app.use(cookieparsar());
 // site main home page -----
 var todomodel = require('./models/Todo');
 app.get('/',async function(req,res){
-    var mytodos = await todomodel.find({});
+    
+    
+    let accessToken = req.cookies.mcook
 
-    res.render('home/homemain',{Uname:Uname, todos: mytodos}); // send todos for the mini todo panel in 
+    //if there is no token stored in cookies, the request is unauthorized
+    if (!accessToken){
+        return res.status(403).send()
+    }
+
+
+
+    let payload
+    try{
+        //use the jwt.verify method to verify the access token
+        //throws an error if the token has expired or has a invalid signature
+        payload = jwt.verify(accessToken, "bcozimbatman");
+        var mytodos = await todomodel.find({username: payload.username});
+        
+        res.render('home/homemain',{Uname:payload.username, todos: mytodos}); 
+        
+        
+    }
+    catch(e){
+        //if an error occured return request unauthorized error
+        
+    
+
+        var mytodos;
+        res.render('home/homemain',{Uname:"Login", todos: mytodos}); // send todos for the mini todo panel in 
+    }
 });
 
 // routes -- used

@@ -82,7 +82,7 @@ router.post('/',async function(req, res){
                     algorithm: "HS256",
                     expiresIn: 86400
                 });
-                console.log(refreshToken);
+                
                 tempuser.token = refreshToken;
                 
                 res.cookie("mcook", accessToken, {secure: true, httpOnly: true});

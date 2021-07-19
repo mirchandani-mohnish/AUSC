@@ -60,10 +60,13 @@
         <div id="todopanel" class="container shadow-lg border rounded h-100 mt-4">
           <div id="todohead" class="h3 mt-2">To Do Today</div>
           <ul class="list-group">
+            <% if(typeof(todos) != 'undefined'){ %>
             <% todos.forEach(mytodos => { %>
             <li class="h4 list-group-item"><%= mytodos.todo %></li>   
             <% }); %>
-    
+            <% }else{ %>
+            <li class="h4 list-group-item">Nothing Here...</li>
+            <% }%>
           </ul>
 
           
