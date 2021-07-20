@@ -27,7 +27,27 @@
           </nav>
 
     </div>
-    
+    <div id="mycourses" class="container shadow-sm">
+      <% if(typeof(mycourses) !== "undefined"){%>
+        <% mycourses.forEach(course => {%>
+          <div class="card rounded-top m-2 col-2" style="width: 18rem;">
+                  
+            <div class="card-body">
+              <h5 class="card-title"><%=course.title%></h5>
+              <h5 class="card-text"><%=course.code%></h5>
+              <h5 class="card-text"><%=course.faculty%></h5>
+              
+              <p class="card-text"><%=course.content%></p>
+              <a href="#" class="btn btn-primary">View</a>
+              <a href="#" class="btn btn-primary">Drop Course</a>
+              
+            </div>
+          </div>
+        <%});%>
+      <%}else{%>
+        <div><p class="h2">No courses Selected....Sorry</p></div>
+      <%}%>
+    </div>
     <div class="container-fluid">
       <div class="row">
         <% allcourses.forEach(course => {%>   

@@ -9,7 +9,8 @@ var user = new Schema({
     password: { type:String, required:true},
     userName: { type:String,required:true,unique:true},
     token:{type: String},
-    admin:{type: Boolean}
+    admin:{type: Boolean},
+    courses:{type:Array}
 
 });
 
