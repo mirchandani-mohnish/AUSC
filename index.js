@@ -49,7 +49,8 @@ app.get('/',async function(req,res){
 
     //if there is no token stored in cookies, the request is unauthorized
     if (!accessToken){
-        return res.status(403).send()
+        var mytodos;
+        res.render('home/homemain',{Uname:"Login", todos: mytodos});
     }
 
 
