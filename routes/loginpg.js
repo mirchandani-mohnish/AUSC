@@ -46,12 +46,12 @@ router.post('/',async function(req, res){
     if (!username || !password){
         return res.status(401).send();
     };
-
+    
     //use the payload to store information about the user such as username, user role, etc.
-    let payload = {username: username};
+    
 
     const tempuser = await usermodel.findOne({userName: username}); 
-
+    let payload = {username: username, admin: tempuser.admin};
     
     
     if(!tempuser){

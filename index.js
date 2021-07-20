@@ -50,7 +50,7 @@ app.get('/',async function(req,res){
     //if there is no token stored in cookies, the request is unauthorized
     if (!accessToken){
         var mytodos;
-        res.render('home/homemain',{Uname:"Login", todos: mytodos});
+        res.render('home/homemain',{Uname:"Login", todos: mytodos,isadmin:false});
     }
 
 
@@ -72,7 +72,7 @@ app.get('/',async function(req,res){
     
 
         var mytodos;
-        res.render('home/homemain',{Uname:"Login", todos: mytodos}); // send todos for the mini todo panel in 
+        res.render('home/homemain',{Uname:"Login", todos: mytodos,isadmin:false}); // send todos for the mini todo panel in 
     }
 });
 
