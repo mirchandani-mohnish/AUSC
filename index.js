@@ -62,7 +62,7 @@ app.get('/',async function(req,res){
         payload = jwt.verify(accessToken, "bcozimbatman");
         var mytodos = await todomodel.find({username: payload.username});
         
-        res.render('home/homemain',{Uname:payload.username, todos: mytodos}); 
+        res.render('home/homemain',{Uname:payload.username, todos: mytodos, isadmin:payload.admin}); 
         
         
     }
