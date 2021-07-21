@@ -29,18 +29,14 @@ router.get('/',async function(req,res){
       payload = jwt.verify(accessToken, "bcozimbatman");
       
       var allcourses = await course.find({});// allcourses will be passed via get to website 
-      var curruser = user.findOne({userName: payload.username});
-      var usercourses = curruser.courses;
-      var usercoursearray;
-      if(typeof(usercoursearray) !== "undefined"){
+      var curruser;
+      await user.findOne({userName: payload.username}).then(thisuser => curruser = thisuser).catch(error => console.log(error));
       
-        for(var l1 = 0;l1 < usercourses.length();l1++){
-          usercoursearray.append(course.findOne({code: usercourses[l1]}));
-        }
-      }
+      var usercourses = curruser.courses;
+      
       
     
-      res.render('courseComp/courseCom',{allcourses:allcourses,mycourses: usercoursearray});// function to display all courses 
+      res.render('courseComp/courseCom',{allcourses:allcourses,mycourses: usercourses});// function to display all courses 
       
      
   }
@@ -63,9 +59,52 @@ router.post('/',async function(req,res){
 });
 
 
-router.post('/selectcourse',async function(req,res){
+router.get('/selectcourse:_code',async function(req,res){
+  let accessToken = req.cookies.mcook;
+  let {_code} = req.params;
+
+  if (!accessToken){
+      return res.status(403).send()
+  }
+  let payload
+  try{
+      
+      payload = jwt.verify(accessToken, "bcozimbatman");
+      var coursesel;
+      await course.find({code:_code}).then(thiscourse => coursesel = thiscourse).catch(error => console.log(error));;// allcourses will be passed via get to website 
+      var curruser;
+      await user.findOne({userName: payload.username}).then(thisuser => curruser = thisuser).catch(error => console.log(error));
+      
+      if(typeof(curruser.courses) === 'undefined'){
+        var temparray = [coursesel];
+        curruser.courses = temparray;
+        curruser.save().catch(error => console.log(error));
+      }else{
+        curruser.courses.push(coursesel);
+        curruser.save().catch(error => console.log(error));
+      }
+      
+      
+      
+
+      
+      
+      res.redirect('/courseComp');
+      //res.render('courseComp/courseCom',{allcourses:allcourses,mycourses: curruser.courses});// function to display all courses 
+      
+     
+  }
+  catch(e){
+      //if an error occured return request unauthorized error
+      
+    console.log(e);
+    res.send("please sign in again");
+
   
-})
+      
+  }
+  
+});
 
 
 

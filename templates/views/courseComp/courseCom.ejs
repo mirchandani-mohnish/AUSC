@@ -28,8 +28,10 @@
 
     </div>
     <div id="mycourses" class="container shadow-sm">
-      <% if(typeof(mycourses) !== "undefined"){%>
+      <% if(typeof(mycourses) !== 'undefined'){%>
+        <div class="row">
         <% mycourses.forEach(course => {%>
+          <% console.log(course) %>
           <div class="card rounded-top m-2 col-2" style="width: 18rem;">
                   
             <div class="card-body">
@@ -44,6 +46,7 @@
             </div>
           </div>
         <%});%>
+        </div>
       <%}else{%>
         <div><p class="h2">No courses Selected....Sorry</p></div>
       <%}%>
@@ -60,7 +63,7 @@
                 
                 <p class="card-text"><%=course.content%></p>
                 <a href="#" class="btn btn-primary">View</a>
-                
+                <a href="/courseComp/selectcourse:<%=course.code%>" class="btn btn-primary">Select Course</a>
                 
               </div>
 
