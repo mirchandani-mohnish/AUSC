@@ -34,13 +34,11 @@ router.get('/',async function(req,res){
       
 
       
-      var usercoursearray = [];
-      for(var l1 = 0;l1<curruser.courses.length;l1++){
-        usercoursearray[l1] = toString(await course.findOne({code: curruser.courses[l1]}).catch(e => console.log(e)));
-      }
       
+      var coursearray = curruser.courses;
+      var usercoursearray = await course.find({'code' : {$in : coursearray}});
     
-      res.render('courseComp/courseCom',{allcourses:allcourses,mycourses: usercoursearray});// function to display all courses 
+      res.render('courseComp/courseCom',{allcourses:allcourses,mycourses:usercoursearray });// function to display all courses 
       
      
   }
@@ -63,7 +61,7 @@ router.post('/',async function(req,res){
 });
 
 
-router.get('/selectcourse/_code',async function(req,res){
+router.get('/selectcourse:_code',async function(req,res){
   let accessToken = req.cookies.mcook;
   let {_code} = req.params;
 
@@ -77,8 +75,9 @@ router.get('/selectcourse/_code',async function(req,res){
       //var coursesel = await course.find({code:_code}).catch(error => console.log(error));;// allcourses will be passed via get to website 
       var curruser;
       await user.findOne({userName: payload.username}).then(thisuser => curruser = thisuser).catch(error => console.log(error));
-      console.log(curruser);
-     
+      //console.log(curruser);
+      // var currcourse;
+      // course.findOne({code: _code}).then(thiscourse => currcourse = thiscourse).catch(e => console.log(e));
       if(typeof(curruser.courses) === 'undefined'){
         var temparray = [_code];
         curruser.courses = temparray;

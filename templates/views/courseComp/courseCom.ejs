@@ -32,10 +32,10 @@
         <div class="row">
         <% mycourses.forEach(course => {%>
           
-          <div class="card rounded-top m-2 col-2" style="width: 18rem;">
+          <div class="card rounded-top m-2 col-3" style="width: 18rem;">
                   
             <div class="card-body">
-              <h5 class="card-title"><%=course.title%></h5>
+              <h4 class="card-title"><%=course.title%></h4>
               <h5 class="card-text"><%=course.code%></h5>
               <h5 class="card-text"><%=course.faculty%></h5>
               
@@ -63,7 +63,7 @@
                 
                 <p class="card-text"><%=course.content%></p>
                 <a href="#" class="btn btn-primary">View</a>
-                <a href="/courseComp/selectcourse:<%=course.code%>" class="btn btn-primary">Select Course</a>
+                <a href="/courseComp/selectcourse<%=course.code%>" class="btn btn-primary">Select Course</a>
                 
               </div>
 
