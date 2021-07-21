@@ -32,11 +32,15 @@ router.get('/',async function(req,res){
       var curruser;
       await user.findOne({userName: payload.username}).then(thisuser => curruser = thisuser).catch(error => console.log(error));
       
-      var usercourses = curruser.courses;
+
       
+      var usercoursearray = [];
+      for(var l1 = 0;l1<curruser.courses.length;l1++){
+        usercoursearray[l1] = toString(await course.findOne({code: curruser.courses[l1]}).catch(e => console.log(e)));
+      }
       
     
-      res.render('courseComp/courseCom',{allcourses:allcourses,mycourses: usercourses});// function to display all courses 
+      res.render('courseComp/courseCom',{allcourses:allcourses,mycourses: usercoursearray});// function to display all courses 
       
      
   }
@@ -59,7 +63,7 @@ router.post('/',async function(req,res){
 });
 
 
-router.get('/selectcourse:_code',async function(req,res){
+router.get('/selectcourse/_code',async function(req,res){
   let accessToken = req.cookies.mcook;
   let {_code} = req.params;
 
@@ -70,17 +74,17 @@ router.get('/selectcourse:_code',async function(req,res){
   try{
       
       payload = jwt.verify(accessToken, "bcozimbatman");
-      var coursesel;
-      await course.find({code:_code}).then(thiscourse => coursesel = thiscourse).catch(error => console.log(error));;// allcourses will be passed via get to website 
+      //var coursesel = await course.find({code:_code}).catch(error => console.log(error));;// allcourses will be passed via get to website 
       var curruser;
       await user.findOne({userName: payload.username}).then(thisuser => curruser = thisuser).catch(error => console.log(error));
-      
+      console.log(curruser);
+     
       if(typeof(curruser.courses) === 'undefined'){
-        var temparray = [coursesel];
+        var temparray = [_code];
         curruser.courses = temparray;
         curruser.save().catch(error => console.log(error));
       }else{
-        curruser.courses.push(coursesel);
+        curruser.courses.push(_code);
         curruser.save().catch(error => console.log(error));
       }
       

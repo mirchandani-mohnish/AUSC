@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-
+const course = require('./course');
 
 const Schema = mongoose.Schema;
 
@@ -10,7 +10,7 @@ var user = new Schema({
     userName: { type:String,required:true,unique:true},
     token:{type: String},
     admin:{type: Boolean},
-    courses:{type:Array}
+    courses:[String]
 
 });
 
