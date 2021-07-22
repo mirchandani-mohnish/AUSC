@@ -79,16 +79,16 @@ router.get('/userpanel', async function(req,res){
 });
 
 
-router.get('/userpanel/addcourse/:edituser', async function(req,res){
+router.post('/userpanel/addcourse:edituser', async function(req,res){
     var edituser = req.params.edituser;
-    var curruser = await user.findOne({userName: edituser.username});
+    var curruser = await user.findOne({userName: edituser});
     if(typeof(curruser.courses) === 'undefined'){
-        var temparr = [edituser.code];
+        var temparr = [req.body.code];
         curruser.courses = temparr;
     }else{
-        curruser.courses.push(edituser.code);
+        curruser.courses.push(req.body.code);
     }
-
+    console.log(curruser);
     curruser.save().then(res.redirect('/admin/userpanel')).catch(e => console.log(e));
 
 

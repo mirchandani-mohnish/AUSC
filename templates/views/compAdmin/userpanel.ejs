@@ -39,10 +39,11 @@
             <ul class="list-group list-group-flush">
                 <% userlist.forEach(curruser => { %>
                     
-                    <li class="list-group-item"><%=curruser.userName%> <form class="form-control">
-                        <input type="text" placeholder="Code">
-                        <a class="btn btn-submit" role="button" href="/admin/userpanel/<% {username: curruser.userName}%>">Submit</a>
-                    </form></li>
+                    <li class="list-group-item"><%=curruser.userName%> 
+                        <form class="form-control" action="/admin/userpanel/addcourse<%=curruser.userName%>" method="POST">
+                            <input type="text" placeholder="Code" name="code">
+                            <button type="submit" class="btn btn-danger">Submit</button>
+                        </form></li>
                         <ul class="list-group list-group-horizontal">
                             <% curruser.courses.forEach(course => { %>
                                 <li class="list-group-item"> <%=course %> </li>
