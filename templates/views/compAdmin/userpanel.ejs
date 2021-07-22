@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/bootstrap.min.css" type="text/css">
+    <title>Admin</title>
+</head>
+<body>
+    <%-include('../../partials/navbar.ejs')%>
+    <div id="usernavbar">
+        <nav class="navbar navbar-expand-lg navbar-light bg-red-600">
+            <div class="container-fluid">
+              
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                
+                <form class="d-flex">
+                  <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                  <button class="btn btn-outline-success" type="submit">Search</button>
+                </form>
+              </div>
+              <div>
+                
+                <a class="nav-link" href="/admin">Course Panel</a>
+                
+              </div>
+            </div>
+        </nav>
+    </div>
+
+    
+
+    <div class="container-fluid">
+        <div>
+            <ul class="list-group list-group-flush">
+                <% userlist.forEach(curruser => { %>
+                    
+                    <li class="list-group-item"><%=curruser.userName%> <form class="form-control">
+                        <input type="text" placeholder="Code">
+                        <a class="btn btn-submit" role="button" href="/admin/userpanel/<% {username: curruser.userName}%>">Submit</a>
+                    </form></li>
+                        <ul class="list-group list-group-horizontal">
+                            <% curruser.courses.forEach(course => { %>
+                                <li class="list-group-item"> <%=course %> </li>
+
+                            <% }); %>
+                        </ul>
+                <% }); %>
+            </ul>
+        </div>
+    </div>
+
+      
+      
+    
+        
+    
+    <script type="module" src="./js/bootstrap.min.js"></script>
+</body>
+</html>
