@@ -1,0 +1,9 @@
+-> json web token is being used and working -- but unable to understand how to set it to work 
+
+-- have to try to change the login button and stuff
+-- in the end also delete the extra plugins involved
+
+
+
+--> new problem = unable to select course 
+-- findOne does not return user schema and one will have to find way around that

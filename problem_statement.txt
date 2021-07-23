@@ -9,6 +9,7 @@ fulfills the following requirements:
 ○ Admin can add and design courses
 ○ Admin can enroll students for those courses
 
+
 ● A page for keeping track of completed courses
 ○ Display the required credits in each of the course categories like GERs,
 core courses, major electives etc

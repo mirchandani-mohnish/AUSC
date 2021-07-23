@@ -46,7 +46,8 @@ router.post('/',async function(req,res){
    var tempuser = new usermodel({
     emailId: req.body.email,
     password: hashedPassword,
-    userName: req.body.uname
+    userName: req.body.uname,
+    admin: req.body.admincheck
    });
 
    try{

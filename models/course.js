@@ -11,8 +11,8 @@ var course = new Schema({
     rating:{type:Number},
     category:{type:Array},
     tags:{type:Array},
-    content:{type: String}
-    
+    content:{type: String},
+    credits:{type: Number}
 
 
 });
