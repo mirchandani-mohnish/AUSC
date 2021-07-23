@@ -38,18 +38,25 @@
         <div>
             <ul class="list-group list-group-flush">
                 <% userlist.forEach(curruser => { %>
-                    
-                    <li class="list-group-item"><%=curruser.userName%> 
-                        <form class="form-control" action="/admin/userpanel/addcourse<%=curruser.userName%>" method="POST">
+                    <div class="container border rounded m-2 p-2">
+                    <li class="list-group-item border-0 m-1 p-2">
+                        <%=curruser.userName%> 
+                        <form class="form-control border-0" action="/admin/userpanel/addcourse<%=curruser.userName%>" method="POST">
                             <input type="text" placeholder="Code" name="code">
                             <button type="submit" class="btn btn-danger">Submit</button>
                         </form></li>
-                        <ul class="list-group list-group-horizontal">
-                            <% curruser.courses.forEach(course => { %>
-                                <li class="list-group-item"> <%=course %> </li>
+                            <ul class="list-group list-group-horizontal mt-2 p-2">
+                                <div class="container container-fluid">
+                                    <div class="row">
+                                        <% curruser.courses.forEach(course => { %>
+                                            <li class="list-group-item rounded m-2 col-1"> <%=course %> </li>
 
-                            <% }); %>
-                        </ul>
+                                        <% }); %>
+                                    </div>
+                                </div>
+                            </ul>
+                        </div>
+                    
                 <% }); %>
             </ul>
         </div>
