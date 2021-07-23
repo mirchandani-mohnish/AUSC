@@ -1,9 +1,22 @@
--> json web token is being used and working -- but unable to understand how to set it to work 
+Work Logs 
 
--- have to try to change the login button and stuff
--- in the end also delete the extra plugins involved
+problem 1 : choice issue -- Unable to understand how the different frameworks work and which would be better for 
+    our needs (i.e. two beginners who know nothing about web dev). Django vs Node -- tried both django and node 
+    found node easier and more convenient because of common language and open structure -- chose node
+    (later found the actual difference and found django to be easier and faster)
 
 
+problem 2 : unable to select frontend framework bootstrap and tailwind -- understood both the frameworks
+    choose bootstrap because of easier implementation 
+    tailwind had build structure and built file after css implementation while bootstrap had css classes
+    took 2 days
 
---> new problem = unable to select course 
--- findOne does not return user schema and one will have to find way around that
+problem 3 : unable to understand node file structure and routers concept -- took lots of time to make simple home page fronted 
+    initially did not use routers. and files were unstructured with all ejs files and one main index.js file 
+    worked out by talking to seniors and tried to figure out using video tutorials
+
+problem 4 : unable to connect to mongodb and file structure 
+
+problem 5 : unable to login and register -- tried passport bcrypt and jwt
+
+problem 6 : unable to get specific data from mongo 

@@ -6,9 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AUSC Home</title>
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    
-    <link rel="stylesheet" href="./homemain.css">
+    <link rel="stylesheet" href="./css/bootstrap.min.css">
+    <link rel="stylesheet" href="/homemain.css" type="text/css">
 
 </head>
 <body>
@@ -44,11 +43,7 @@
                     <a class="nav-link active" aria-current="page" href="/courseComp">Course Companion</a>
                   </li>
                   
-                  <% if(isadmin){ %>
-                  <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="/admin">Admin</a>
-                  </li>
-                  <% } %>
+                  
         
                 </ul>
                 <h3><a  class="nav-link-active" aria-current="page" href="/login"><%=Uname%></a></h3>
@@ -85,13 +80,26 @@
     <div class="col">
       <div id="schedulepanel" class="container shadow-lg border rounded h-100 mt-4">
         <div id="scheduletoday" class="h3 mt-2">Schedule Today</div>
-        
+        <ul class="list-group">
+          <% if(typeof(usercourses) != 'undefined'){ %>
+          <% usercourses.forEach(course => { %>
+          <li class="h4 list-group-item"><%= course %></li>   
+          <% }); %>
+          <% }else{ %>
+          <li class="h4 list-group-item">Nothing Here...</li>
+          <% }%>
+        </ul>
       </div>
     </div>
 
+    <div class="adminbtn">
+      <% if(isadmin){ %>
+        <a class="btn btn-outline-danger" aria-current="page" href="/admin">Admin</a>
+      <% } %>
+    </div>
 
     <!-- bootstrap cdn -- may also use bootstrap installed as package later-->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-
+    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script> -->
+    <script type="module" src="./js/bootstrap.min.js"></script>
 </body>
 </html>
