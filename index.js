@@ -72,9 +72,9 @@ app.get('/',async function(req,res){
         
     
 
-        var mytodos;
-        console.log(e);
-        res.render('home/homemain',{Uname:"Login", todos: mytodos,isadmin:false}); // send todos for the mini todo panel in 
+        
+        //console.log(e);
+        res.redirect('/login'); // send todos for the mini todo panel in 
     }
 });
 

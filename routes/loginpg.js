@@ -51,17 +51,18 @@ router.post('/',async function(req, res){
     
 
     const tempuser = await usermodel.findOne({userName: username}); 
-    let payload = {username: username, admin: tempuser.admin};
+    let payload;
     
     
-    if(!tempuser){
+    if(!tempuser || tempuser === null){
         console.log("nt a user");
-        res.redirect('/');
+        res.redirect('/register');
 
 
     }else{
         
         try{
+            payload = {username: username, admin: tempuser.admin};
             if(await bcrypt.compare(req.body.password,tempuser.password)){
                 console.log("logged in");
                 
@@ -93,6 +94,7 @@ router.post('/',async function(req, res){
             }
         }catch(error){
             console.log(error);
+            res.redirect('/login');
         }
             
 
