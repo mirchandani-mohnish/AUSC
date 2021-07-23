@@ -1,3 +1,5 @@
+
+//imports
 var express = require('express');
 var app = express();
 const path = require('path');
@@ -12,6 +14,7 @@ var login = require('./routes/loginpg');
 var courseComp = require('./routes/courseComp');
 var todo = require('./routes/todo');
 var admin = require('./routes/adminpg');
+
 //variables
 var Uname = "Login"; 
 
@@ -34,6 +37,8 @@ app.use(
 );
 // bootstrap ends ===============================================================
 
+
+// static uses 
 app.use(express.json());
 app.use(express.urlencoded({
     extended: true
@@ -42,6 +47,8 @@ app.use(express.static(__dirname + '/res'));
 app.use(cookieparsar());
 // site main home page -----
 var todomodel = require('./models/Todo');
+
+// main home page -- only works if logged in
 app.get('/',async function(req,res){
     
     
@@ -68,15 +75,10 @@ app.get('/',async function(req,res){
         
     }
     catch(e){
-        //if an error occured return request unauthorized error
-        
-    
-
-        
-        //console.log(e);
-        res.redirect('/login'); // send todos for the mini todo panel in 
+        res.redirect('/login');  
     }
 });
+
 
 // routes -- used
 app.use('/login',login); // login page

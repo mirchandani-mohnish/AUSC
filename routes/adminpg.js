@@ -4,6 +4,7 @@ var course = require('../models/course');
 var jwt = require('jsonwebtoken');
 var user = require('../models/user');
 
+
 // mongodb connection
 const mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost:27017/register',{useNewUrlParser: true , useUnifiedTopology: true , useCreateIndex:true });
@@ -14,7 +15,7 @@ db.once("open", function() {
   console.log("Connection Successful! - admin");
 });
 
-
+// admin main page
 router.get('/',async function(req,res){
     var allcourses = await course.find({});
 
@@ -23,6 +24,7 @@ router.get('/',async function(req,res){
 });
 
 
+// admin add course function - adds course to the list of courses available  
 
 router.post('/add',async function(req,res){
     tempcourse = new course({
@@ -48,6 +50,8 @@ router.post('/add',async function(req,res){
     
 });
 
+
+// user panel -- admin can add or delete courses for users 
 router.get('/userpanel', async function(req,res){
     let accessToken = req.cookies.mcook
     if (!accessToken){
@@ -58,7 +62,7 @@ router.get('/userpanel', async function(req,res){
         
         payload = jwt.verify(accessToken, "bcozimbatman");
         
-        var userlist;
+        var userlist;//list of registered users
         await user.find({}).then(users => userlist = users).catch(error => console.log(error));
         res.render('compAdmin/userpanel',{userlist: userlist});
         
@@ -75,10 +79,10 @@ router.get('/userpanel', async function(req,res){
   
     
     
-    //res.render('courseAdmin/userpanel',{allusers: allusers})
+    
 });
 
-
+// add course for specific user from list of availble courses 
 router.post('/userpanel/addcourse:edituser', async function(req,res){
     var edituser = req.params.edituser;
     var curruser = await user.findOne({userName: edituser});

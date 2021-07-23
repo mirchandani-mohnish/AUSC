@@ -15,7 +15,6 @@ db.once("open", function() {
 });
 
 
-// allcourses will be passed via get to website 
 
 
 router.get('/',async function(req,res){

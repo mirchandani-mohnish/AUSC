@@ -14,7 +14,7 @@ router.use(express.json());
 router.use(express.urlencoded({
     extended: true
 }));
-
+//mongodb connection
 mongoose.connect('mongodb://localhost:27017/register',{useNewUrlParser: true , useUnifiedTopology: true , useCreateIndex:true });
 const db = mongoose.connection;
 db.on("error", console.error.bind(console, "connection error:"));
@@ -23,9 +23,8 @@ db.once("open", function() {
   console.log("Connection Successful!");
 });
 
-// user schema made in models folder 
 
-
+// main register page 
 router.get('/', function(req,res){
     res.render('loginpg/signup');
 });
@@ -42,7 +41,7 @@ router.post('/',async function(req,res){
     res.status(203).send();
   }
   
-
+    //new user created
    var tempuser = new usermodel({
     emailId: req.body.email,
     password: hashedPassword,
@@ -53,7 +52,7 @@ router.post('/',async function(req,res){
    try{
     usermodel.create(tempuser);
     console.log("tempuser created succesfully");
-    res.redirect('/login');
+    res.redirect('/login');// redirect to login once registered
    }
    catch(error){
         console.log("some error occured");

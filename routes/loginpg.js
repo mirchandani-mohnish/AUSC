@@ -1,15 +1,9 @@
 var express = require('express');
 let router = express.Router();
 var bcrypt = require('bcryptjs');
-
 var ejs = require('ejs');
 var jwt = require('jsonwebtoken');
-
 const mongoose = require('mongoose');
-var bcrypt = require('bcryptjs');
-
-
-
 var usermodel = require('../models/user');
 const { verify } = require('../middleware');
 // use bodyparser 
@@ -21,7 +15,7 @@ router.use(express.urlencoded({
   }));
 
 
-
+// mongodb connection
 mongoose.connect('mongodb://localhost:27017/register',{useNewUrlParser: true , useUnifiedTopology: true , useCreateIndex:true });
 const db = mongoose.connection;
 db.on("error", console.error.bind(console, "connection error:"));
@@ -32,24 +26,24 @@ db.once("open", function() {
 
 
 
-
+// main page for login
 router.get('/',function(req,res){
     res.render('loginpg/login');
 });
 
 router.post('/',async function(req, res){
-
+    //get username and password from form
     let username = req.body.username;
     let password = req.body.password;
     
-    // Neither do this!
+    
     if (!username || !password){
         return res.status(401).send();
     };
     
-    //use the payload to store information about the user such as username, user role, etc.
     
-
+    
+    // search for the user based on username in database
     const tempuser = await usermodel.findOne({userName: username}); 
     let payload;
     
@@ -67,10 +61,10 @@ router.post('/',async function(req, res){
                 console.log("logged in");
                 
 
-                //create the access token with the shorter lifespan
+                
                 
 
-                
+                // create accesstoken
                 let accessToken = jwt.sign(payload, "bcozimbatman", {
                     algorithm: "HS256",
                     expiresIn: 240
@@ -78,7 +72,7 @@ router.post('/',async function(req, res){
                 
                 
 
-                //create the refresh token with the longer lifespan
+                //create the refresh token
                 let refreshToken = jwt.sign(payload, "bcozimnotbatman", {
                     algorithm: "HS256",
                     expiresIn: 86400
@@ -93,7 +87,7 @@ router.post('/',async function(req, res){
                 res.status(203).send();
             }
         }catch(error){
-            console.log(error);
+            console.log(error);// if error -- then redirect to same login page 
             res.redirect('/login');
         }
             
