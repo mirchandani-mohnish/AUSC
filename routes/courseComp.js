@@ -110,5 +110,56 @@ router.get('/selectcourse:_code',async function(req,res){
 });
 
 
+router.get('/deletecourse:_code',async function(req,res){
+  let accessToken = req.cookies.mcook;
+  let {_code} = req.params;
+
+  if (!accessToken){
+      return res.status(403).send()
+  }
+  let payload
+  try{
+      
+      payload = jwt.verify(accessToken, "bcozimbatman");
+      //var coursesel = await course.find({code:_code}).catch(error => console.log(error));;// allcourses will be passed via get to website 
+      var curruser;
+      await user.findOne({userName: payload.username}).then(thisuser => curruser = thisuser).catch(error => console.log(error));
+      //console.log(curruser);
+      // var currcourse;
+      // course.findOne({code: _code}).then(thiscourse => currcourse = thiscourse).catch(e => console.log(e));
+      if(typeof(curruser.courses) === 'undefined'){
+        
+        curruser.save().catch(error => console.log(error));
+      }else{
+        var ind = curruser.courses.indexOf(_code);
+        
+        curruser.courses.splice(ind,1);
+        curruser.save().catch(error => console.log(error));
+      }
+      
+      
+      
+
+      
+      
+      res.redirect('/courseComp');
+      //res.render('courseComp/courseCom',{allcourses:allcourses,mycourses: curruser.courses});// function to display all courses 
+      
+     
+  }
+  catch(e){
+      //if an error occured return request unauthorized error
+      
+    console.log(e);
+    res.send("please sign in again");
+
+  
+      
+  }
+  
+});
+
+
+
 
 module.exports = router;
