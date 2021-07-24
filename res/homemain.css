@@ -19,3 +19,12 @@
     z-index: 10;
 
 }
+
+.uname-link{
+    color: white;
+    text-decoration: none;
+    padding: 10px;
+}
+.uname-link:hover{
+    color: lightgreen;
+}
