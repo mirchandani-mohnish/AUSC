@@ -67,7 +67,7 @@ router.post('/',async function(req, res){
                 // create accesstoken
                 let accessToken = jwt.sign(payload, "bcozimbatman", {
                     algorithm: "HS256",
-                    expiresIn: 240
+                    expiresIn: 480
                 });
                 
                 
