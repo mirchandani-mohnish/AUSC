@@ -8,18 +8,20 @@
 
 <span> Any feedback on the website would be gladly welcome. The site is in its beginning stages and thus is riddled with bugs.</span>
 
-<span> ##### **Components**
+### Components
 
+
+The following are the components of the site
 * *Home Page*
 * *Admin Page*
 * *Course Companion*
 * *Admin Panel*
 * *Todo List*
 * *Login and Signup*
-</span>
 
 
-###  A big Thanks for viewing this Repository :) 
+
+###  We Thank You for viewing this Repository :) 
 
 
 
