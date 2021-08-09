@@ -19,16 +19,26 @@
 <%-include("../../partials/navbar")%>
 
 
-<div class="container mt-5">
+<div class="container m-5 p-3">
     <form action="/todo/add/todo" method="POST" class="d-flex">
         <input type="text" name="todo" class="form-control" placeholder="Enter Your To-Do">
         <input type="submit" value="Add Todo" class="btn btn-md btn-primary mx-2">
     </form>
 
+    
     <ul class="list-group my-5">
+        <div class="container">
         <% todo.forEach(todos => { %>
-            <li class="list-group-item"><%= todos.todo %><a href="/todo/delete/todo/<%= todos._id %>"class="btn btn-danger btn-sm">Delete</a></li>   
+            
+                <div class="row">
+                    <div class="col-11"><li class="list-group-item"><%= todos.todo %></li></div>
+                    <div class="col-1"><a href="/todo/delete/todo/<%= todos._id %>"class="btn btn-danger">Delete</a></div>
+                </div>
+                
+            
+              
         <% }) %>
+            </div>
 
     </ul>
     <style>
@@ -38,10 +48,11 @@
             margin-left: 1000px;
         }
     </style>
+    
 </div>
 
 
 
-
+<script type="module" src="./js/bootstrap.min.js"></script
 
 <%- include("../../partials/footer")  %>

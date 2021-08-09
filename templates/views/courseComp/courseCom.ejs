@@ -34,7 +34,8 @@
           </nav>
 
     </div>
-    <div id="mycourses" class="container shadow-lg">
+    <div id="mycourses" class="container shadow-lg p-3">
+      <div class="h3 fw-bold m-2">Your Selected Courses</div>
       <% if(typeof(mycourses) !== 'undefined'){%>
         <div class="row justify-content-center">
         <% mycourses.forEach(course => {%>
@@ -58,7 +59,8 @@
         <div><p class="h2">No courses Selected....Sorry</p></div>
       <%}%>
     </div>
-    <div class="container-fluid">
+    <div class="container shadow-lg p-3">
+      <div class="h3 fw-bold m-2">All Available Courses</div>
       <div class="row">
         <% allcourses.forEach(course => {%>   
           <div class="card rounded-top m-2 col-3" style="width: 18rem;">
