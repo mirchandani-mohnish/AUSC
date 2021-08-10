@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/bootstrap.min.css" type="text/css">
     <link rel="stylesheet" href="/userpanel.css" type="text/css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
     <title>Admin</title>
 </head>
 <body>
@@ -58,7 +59,12 @@
                                 <div class="container container-fluid">
                                     <div class="row">
                                         <% curruser.courses.forEach(course => { %>
-                                            <li class="list-group-item rounded m-2 col-sm-4 col-md-2 col-lg-1"> <%=course %> </li>
+                                            <li class="list-group-item rounded m-2 col-sm-4 col-md-2 col-lg-1"> <%=course %> 
+                                                <a class="btn btn-danger btn-sm m-2 p-2" href="/admin/userpanel/delcourse<%=curruser.userName%>&<%=coures%>">
+                                                    Delete
+                                                </a>
+                                            </li>
+                                            
 
                                         <% }); %>
                                     </div>
