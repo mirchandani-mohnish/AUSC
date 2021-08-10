@@ -28,7 +28,8 @@ exports.verify = function(req, res, next){
     }
 }
 
-exports.verifyadmin = function(req, res){
+
+exports.verifyadmin = function(req, res, next){
     let accessToken = req.cookies.mcook
 
     //if there is no token stored in cookies, the request is unauthorized
@@ -48,13 +49,15 @@ exports.verifyadmin = function(req, res){
         if(payload.admin === true){
             next();
         }else{
-            res.send("Sorry You are not an admin").then(e => console.log(e));
+            res.send("Sorry You are not an admin");
             
         }
     }
     catch(e){
         //if an error occured return request unauthorized error
-        return res.status(401).send()
+        console.log(e);
+        return res.status(401).send();
+        
     }
 }
 
