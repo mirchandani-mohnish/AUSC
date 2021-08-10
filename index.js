@@ -5,7 +5,7 @@ var app = express();
 const path = require('path');
 var jwt = require('jsonwebtoken');
 var cookieparsar = require('cookie-parser');
-const {verify} = require('./middleware');
+const {verify,verifyadmin} = require('./middleware');
 var user = require('./models/user')
 
 // routes
@@ -85,7 +85,7 @@ app.use('/login',login); // login page
 app.use('/register',register);// register
 app.use('/courseComp',verify,courseComp);// course companion
 app.use('/todo',verify,todo);// todo list 
-app.use('/admin',verify,admin);// admin companion
+app.use('/admin',verifyadmin,admin);// admin companion
 
 
 app.get('/about', function(req,res){
