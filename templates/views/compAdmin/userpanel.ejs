@@ -60,7 +60,7 @@
                                     <div class="row">
                                         <% curruser.courses.forEach(course => { %>
                                             <li class="list-group-item rounded m-2 col-sm-4 col-md-2 col-lg-1"> <%=course %> 
-                                                <a class="btn btn-danger btn-sm m-2 p-2" href="/admin/userpanel/delcourse<%=curruser.userName%>&<%=coures%>">
+                                                <a class="btn btn-danger btn-sm m-2 p-2" href="/admin/userpanel/delcourse/<%=curruser.userName%>/<%=course%>">
                                                     Delete
                                                 </a>
                                             </li>
