@@ -98,6 +98,25 @@ router.post('/userpanel/addcourse:edituser', async function(req,res){
 
 });
 
+
+
+router.get('/userpanel/delcourse/:edituser/:delcourse', async function(req,res){
+    var edituser = req.params.edituser;
+    var curruser = await user.findOne({userName: edituser});
+    var delcourse = req.params.delcourse;
+
+
+    if(typeof(curruser.courses) === 'undefined'){
+        console.log("nothing to delete");
+    }else{
+        curruser.courses.pull(delcourse);
+    }
+    console.log(curruser);
+    curruser.save().then(res.redirect('/admin/userpanel')).catch(e => console.log(e));
+
+
+});
+
 // a userpanel function which categorizes students and also displays all the courses that they
 //have chosen -- it should allow an admin to allot courses to students when required
 

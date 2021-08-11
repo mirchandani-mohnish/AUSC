@@ -28,7 +28,8 @@ exports.verify = function(req, res, next){
     }
 }
 
-exports.verifyreturn = function(req, res){
+
+exports.verifyadmin = function(req, res, next){
     let accessToken = req.cookies.mcook
 
     //if there is no token stored in cookies, the request is unauthorized
@@ -44,12 +45,19 @@ exports.verifyreturn = function(req, res){
         //throws an error if the token has expired or has a invalid signature
         payload = jwt.verify(accessToken, "bcozimbatman");
         
-        return payload;
         
+        if(payload.admin === true){
+            next();
+        }else{
+            res.send("Sorry You are not an admin");
+            
+        }
     }
     catch(e){
         //if an error occured return request unauthorized error
-        return res.status(401).send()
+        console.log(e);
+        return res.status(401).send();
+        
     }
 }
 
