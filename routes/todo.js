@@ -19,7 +19,7 @@ router.use(express.urlencoded({
 router.get("/", async(req, res) => {
   let accessToken = req.cookies.mcook
     if (!accessToken){
-        return res.status(403).send()
+        res.redirect('/login')
     }
     let payload
     try{

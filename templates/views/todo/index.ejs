@@ -21,8 +21,44 @@
 
 <div class="container m-5 p-3">
     <form action="/todo/add/todo" method="POST" class="d-flex">
-        <input type="text" name="todo" class="form-control" placeholder="Enter Your To-Do">
-        <input type="submit" value="Add Todo" class="btn btn-md btn-primary mx-2">
+        <div class="row">
+            <div class="col-9">
+                <input type="text" name="todo" class="form-control m-2" placeholder="Enter Your To-Do">
+            </div>
+            <div class="col-3">
+                <input type="time" name="todotime" class="form-control m-2" placeholder="Add the Time slot if required">
+            </div>
+        </div>
+
+        <div class="row">
+
+        
+            <div class="col">
+                <input type="date" name="tododate" class="form-control m-2">
+            </div>
+            <div class="col-2">
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" id="gridCheck">
+                  <label class="form-check-label" for="gridCheck">
+                    Check me out
+                  </label>
+                </div>
+            </div>
+            <div class="col-1">
+                
+                <input type="submit" value="Add Todo" class="btn btn-md btn-primary m-2">
+            </div>
+            
+        </div>
+        
+
+       
+        
+
+        
+        
+        
+        
     </form>
 
     
