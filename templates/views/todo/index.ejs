@@ -50,47 +50,58 @@
             </div>
             
         </div>
-        
-
-       
-        
-
-        
-        
-        
-        
     </form>
+</div>
+
+<div class="container m-5 p-2 rounded shadow-sm">
 
     
-    <ul class="list-group my-5">
-        <div class="container">
+    <table class="table table-primary">
+
+        <thead>
+            <tr>
+                <th scope="col">Todo</th>
+                <th scope="col">Date</th>
+                <th scope="col">Time</th>
+                <th scope="col">Options</th>
+            </tr>
+            
+        </thead>
+        
         <% todo.forEach(todos => { %>
             
-                <div class="row">
-                    <li class="list-group-item">
-                        <div class="col-6"><%= todos.todo %></div>
-                        <div class="col-3"><%= todos.tododate%></div>
-                        <div class="col-2"><%= todos.todotime%></div>
-                    </li>
+                
+           
+                
+            <tbody>
+                <tr>
+                    <td><%= todos.todo %></td>
+                    <td><%= todos.tododate%></td>
+                    <td><%= todos.todotime%></td>
+                    <td><a href="/todo/delete/todo/<%= todos._id %>"class="btn btn-danger">Delete</a></td>
                     
-                    <div class="col-1"><a href="/todo/delete/todo/<%= todos._id %>"class="btn btn-danger">Delete</a></div>
-                </div>
+                
+                </tr>
+            </tbody>
+            
                 
             
               
         <% }) %>
-            </div>
+            
 
-    </ul>
-    <style>
-        body{background-color: powderblue; font-family: cursive;}
-        .list-group-item a{
-            position: relative;
-            margin-left: 1000px;
-        }
-    </style>
-    
+    </table>
 </div>
+
+<style>
+    body{background-color: powderblue; font-family: cursive;}
+    .list-group-item a{
+        position: relative;
+        margin-left: 1000px;
+    }
+</style>
+    
+
 
 
 
