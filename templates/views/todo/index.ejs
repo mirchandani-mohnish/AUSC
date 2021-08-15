@@ -21,35 +21,87 @@
 
 <div class="container m-5 p-3">
     <form action="/todo/add/todo" method="POST" class="d-flex">
-        <input type="text" name="todo" class="form-control" placeholder="Enter Your To-Do">
-        <input type="submit" value="Add Todo" class="btn btn-md btn-primary mx-2">
+        <div class="row">
+            <div class="col-9">
+                <input type="text" name="todo" class="form-control m-2" placeholder="Enter Your To-Do">
+            </div>
+            <div class="col-3">
+                <input type="time" name="todotime" class="form-control m-2" placeholder="Add the Time slot if required">
+            </div>
+        </div>
+
+        <div class="row">
+
+        
+            <div class="col">
+                <input type="date" name="tododate" class="form-control m-2">
+            </div>
+            <div class="col-2">
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" id="gridCheck">
+                  <label class="form-check-label" for="gridCheck">
+                    Reminder??
+                  </label>
+                </div>
+            </div>
+            <div class="col-1">
+                
+                <input type="submit" value="Add Todo" class="btn btn-md btn-primary m-2">
+            </div>
+            
+        </div>
     </form>
+</div>
+
+<div class="container m-5 p-2 rounded shadow-sm">
 
     
-    <ul class="list-group my-5">
-        <div class="container">
+    <table class="table table-primary">
+
+        <thead>
+            <tr>
+                <th scope="col">Todo</th>
+                <th scope="col">Date</th>
+                <th scope="col">Time</th>
+                <th scope="col">Options</th>
+            </tr>
+            
+        </thead>
+        
         <% todo.forEach(todos => { %>
             
-                <div class="row">
-                    <div class="col-11"><li class="list-group-item"><%= todos.todo %></li></div>
-                    <div class="col-1"><a href="/todo/delete/todo/<%= todos._id %>"class="btn btn-danger">Delete</a></div>
-                </div>
+                
+           
+                
+            <tbody>
+                <tr>
+                    <td><%= todos.todo %></td>
+                    <td><%= todos.tododate%></td>
+                    <td><%= todos.todotime%></td>
+                    <td><a href="/todo/delete/todo/<%= todos._id %>"class="btn btn-danger">Delete</a></td>
+                    
+                
+                </tr>
+            </tbody>
+            
                 
             
               
         <% }) %>
-            </div>
+            
 
-    </ul>
-    <style>
-        body{background-color: powderblue; font-family: cursive;}
-        .list-group-item a{
-            position: relative;
-            margin-left: 1000px;
-        }
-    </style>
-    
+    </table>
 </div>
+
+<style>
+    body{background-color: powderblue; font-family: cursive;}
+    .list-group-item a{
+        position: relative;
+        margin-left: 1000px;
+    }
+</style>
+    
+
 
 
 

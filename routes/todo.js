@@ -19,7 +19,7 @@ router.use(express.urlencoded({
 router.get("/", async(req, res) => {
   let accessToken = req.cookies.mcook
     if (!accessToken){
-        return res.status(403).send()
+        res.redirect('/login')
     }
     let payload
     try{
@@ -46,6 +46,8 @@ router.get("/", async(req, res) => {
 router
   .post("/add/todo", (req, res) => {
     const { todo } = req.body;
+    const tododate = req.body.tododate;
+    const todotime = req.body.todotime;
     
 
     let accessToken = req.cookies.mcook
@@ -58,7 +60,7 @@ router
         payload = jwt.verify(accessToken, "bcozimbatman");
         
         
-        const newTodo = new Todo({ todo , username:payload.username});
+        const newTodo = new Todo({ todo , username:payload.username, tododate: tododate, todotime: todotime});
         newTodo
         .save()
         .then(() => {
