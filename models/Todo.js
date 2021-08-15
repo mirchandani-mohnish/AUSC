@@ -1,3 +1,4 @@
+const { time } = require("console");
 const mongoose = require("mongoose");
 
 const TodoSchema = new mongoose.Schema({
@@ -5,7 +6,13 @@ const TodoSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  username: {type: String}
+  username: {type: String},
+  tododate: {
+    type: Date,
+  },
+  todotime: {
+    type: String,
+  },
 });
 
 module.exports = new mongoose.model("Todo", TodoSchema);
